@@ -1,14 +1,14 @@
-import { ChakraProvider, theme } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 
+import { Theme } from "./theme/theme";
 import { Router } from "./router/Router";
-import "./styles.css";
 
 export default function App() {
   return (
     <div className="App">
       {/* ChkraUIを全体で使えるように覆う。それにグローバルなcssを書いたテーマを渡す */}
-      <ChakraProvider theme={theme}>
+      <ChakraProvider theme={Theme}>
         {/* react-routerを使えるようにする */}
         <BrowserRouter>
           <Router />
