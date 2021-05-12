@@ -3,14 +3,12 @@ import { ChangeEvent, memo, useState, VFC } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 
-// ログインようのコンポーネント、しっかり型定義をする
+// ログイン用コンポーネント、しっかり型定義をする
 // 予めメモ化しておく
 export const Login: VFC = memo(() => {
   // カスタムフックは最後に()をつける
   const { login, loading } = useAuth();
   const [userId, setUserId] = useState("");
-  console.log(login);
-  console.log(loading);
   const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
   };

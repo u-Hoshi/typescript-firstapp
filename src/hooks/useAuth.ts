@@ -13,7 +13,7 @@ export const useAuth = () => {
   const login = useCallback(
     (id: string) => {
       setLoading(true);
-
+      // 入力したidをクエリパラメータに入れてURLを送り、それが存在していたらok,なかったらエラーとする
       axios
         .get<User>(`https://jsonplaceholder.typicode.com/users/${id}`)
         .then((res) => {
