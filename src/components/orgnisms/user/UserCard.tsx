@@ -4,11 +4,11 @@ import { memo, VFC } from "react";
 type Props = {
   imageUrl: string;
   userName: string;
-  fullNmae: string;
+  fullName: string;
 };
 
 export const UserCard: VFC<Props> = memo((props) => {
-  const { imageUrl, userName, fullNmae } = props;
+  const { imageUrl, userName, fullName } = props;
   return (
     <WrapItem>
       <Box
@@ -32,7 +32,7 @@ export const UserCard: VFC<Props> = memo((props) => {
             {userName}
           </Text>
           <Text fontSize="sm" color="gray">
-            {fullNmae}
+            {fullName}
           </Text>
         </Stack>
       </Box>
