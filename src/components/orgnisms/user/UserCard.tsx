@@ -1,14 +1,45 @@
-import { Box, Image, Stack, Text, Wrap, WrapItem } from "@chakra-ui/react";
-import { memo, VFC } from "react";
+import {
+  Box,
+  Center,
+  Image,
+  Stack,
+  Text,
+  Wrap,
+  WrapItem
+} from "@chakra-ui/react";
+import axios from "axios";
+import { memo, VFC, useEffect, useState } from "react";
+import { Spinner } from "@chakra-ui/react";
 
 type Props = {
-  imageUrl: string;
+  // imageUrl: string;
+  id: number;
   userName: string;
   fullName: string;
+  onClick: (id: number) => void;
 };
 
 export const UserCard: VFC<Props> = memo((props) => {
-  const { imageUrl, userName, fullName } = props;
+  const { id, userName, fullName, onClick } = props;
+
+  const [img, setImg] = useState();
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("https://dog.ceo/api/breeds/image/random")
+      .then((res) => {
+        console.log(res.data);
+        setImg(res.data.message);
+      })
+      .catch(() => {
+        console.log("errだよ");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <WrapItem>
       <Box
@@ -19,15 +50,22 @@ export const UserCard: VFC<Props> = memo((props) => {
         shadow="mg"
         p={4}
         _hover={{ cursor: "pointer", opacity: 0.8 }}
+        onClick={() => onClick(id)}
       >
         <Stack textAlign="center">
-          <Image
-            boxSize="160px"
-            borderRadius="full"
-            m="auto"
-            src={imageUrl}
-            alt="プロフィール画像"
-          />
+          {loading ? (
+            <Center>
+              <Spinner />
+            </Center>
+          ) : (
+            <Image
+              boxSize="160px"
+              borderRadius="full"
+              m="auto"
+              src={img}
+              alt="プロフィール画像"
+            />
+          )}
           <Text fontSize="lg" fontWeight="bold">
             {userName}
           </Text>
