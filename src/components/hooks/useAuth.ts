@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { User } from "../types/api/user";
+import { User } from "../../types/api/user";
 import { useMessage } from "./useMessage";
 
 export const useAuth = () => {
@@ -34,7 +34,6 @@ export const useAuth = () => {
           setLoading(false);
         });
     },
-
     [history, showMessage]
   );
   // ログインの関数とloadingのstateを返してあげないと他でつかえない

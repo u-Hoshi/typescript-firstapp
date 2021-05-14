@@ -1,10 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { User } from "../types/api/user";
+import { User } from "../../types/api/user";
 import { useMessage } from "./useMessage";
-
-type Props = {};
 
 export const useAllUsers = () => {
   const { showMessage } = useMessage();
@@ -17,7 +15,6 @@ export const useAllUsers = () => {
       .get<Array<User>>("https://jsonplaceholder.typicode.com/users")
       .then((res) => {
         setUsers(res.data);
-        console.log(res.data);
       })
       .catch(() => {
         showMessage({
@@ -28,7 +25,7 @@ export const useAllUsers = () => {
       .finally(() => {
         setLoading(false);
       });
-    // 今回は銅的に変わるものがないのでeslintの設定を無効にするs
+    // 今回は銅的に変わるものがないのでeslintの設定を無効にする
   }, []);
   return { getUsers, loading, users };
 };
