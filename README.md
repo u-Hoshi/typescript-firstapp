@@ -2,6 +2,8 @@
 
 TypeScritp と React を使用した初めてのアプリです。
 
+App : https://p0ge1.csb.app/
+
 ## 使用技術
 
 - TypeScript
