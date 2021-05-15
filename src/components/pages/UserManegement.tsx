@@ -5,13 +5,13 @@ import {
   Wrap,
   WrapItem
 } from "@chakra-ui/react";
-import { memo, useCallback, useEffect, useState, VFC } from "react";
+import { memo, useCallback, useEffect, VFC } from "react";
 import { UserCard } from "../orgnisms/user/UserCard";
 import { useAllUsers } from "../hooks/useAllUsers";
 import { UserDetailModal } from "../orgnisms/user/UserDetailModal";
 import { useSelectUser } from "../hooks/useSelectUser";
 import { useLoginUser } from "../hooks/useLoginUser";
-import axios from "axios";
+// import axios from "axios";
 
 // 予めメモ化しておく
 export const UserManegement: VFC = memo(() => {
@@ -20,7 +20,6 @@ export const UserManegement: VFC = memo(() => {
   const { getUsers, users, loading } = useAllUsers();
   const { onSelectUser, selectedUser } = useSelectUser();
   const { loginUser } = useLoginUser();
-  console.log(loginUser);
   useEffect(() => getUsers(), []);
   // propsとして関数を渡すときは毎回再作成をするとレンダリングの効率が落ちるのでusecallbackでメモ化する
   const onClickUser = useCallback(
@@ -71,7 +70,12 @@ export const UserManegement: VFC = memo(() => {
         </Wrap>
       )}
       {/* カードをクリックしたときにユーザー詳細が見れるようにする */}
-      <UserDetailModal user={selectedUser} onClose={onClose} isOpen={isOpen} />
+      <UserDetailModal
+        user={selectedUser}
+        onClose={onClose}
+        isOpen={isOpen}
+        isAdmin={loginUser?.isAdmin}
+      />
     </>
   );
 });
