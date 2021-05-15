@@ -1,12 +1,4 @@
-import {
-  Box,
-  Center,
-  Image,
-  Stack,
-  Text,
-  Wrap,
-  WrapItem
-} from "@chakra-ui/react";
+import { Box, Center, Image, Stack, Text, WrapItem } from "@chakra-ui/react";
 import axios from "axios";
 import { memo, VFC, useEffect, useState } from "react";
 import { Spinner } from "@chakra-ui/react";
@@ -29,7 +21,6 @@ export const UserCard: VFC<Props> = memo((props) => {
     axios
       .get("https://dog.ceo/api/breeds/image/random")
       .then((res) => {
-        console.log(res.data);
         setImg(res.data.message);
       })
       .catch(() => {

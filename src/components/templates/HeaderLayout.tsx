@@ -6,12 +6,10 @@ type Props = {
 };
 
 export const HeaderLayout: VFC<Props> = memo((props) => {
-  console.log(props);
   const { children } = props;
   return (
     <>
       <Header />
-
       {children}
     </>
   );
