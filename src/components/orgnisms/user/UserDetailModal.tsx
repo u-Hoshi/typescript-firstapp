@@ -64,7 +64,7 @@ export const UserDetailModal: VFC<Props> = memo((props) => {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>ユーザ詳細</ModalHeader>
-        <ModalCloseButton pb={6} />
+        <ModalCloseButton />
         <ModalBody mx={4}>
           <Stack p={4}>
             <FormControl>
